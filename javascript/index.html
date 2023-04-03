@@ -1,0 +1,341 @@
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>JavaScript and the Document Object Model (DOM)</title>
+  <link rel="stylesheet" href="dist/reveal.css" />
+
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <h1>
+        Javascript 9
+      </h1>
+      <section>
+        <section>
+          <h1>Introduction to JavaScript and the Document Object Model (DOM)</h1>
+          <p class="codepen" data-height="500" data-default-tab="html,result" data-slug-hash="LYJwWZZ" data-user="jalez"
+            style="height: 500px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+            <span>See the Pen <a href="https://codepen.io/jalez/pen/LYJwWZZ">
+                Untitled</a> by Jaakko Rajala (<a href="https://codepen.io/jalez">@jalez</a>)
+              on <a href="https://codepen.io">CodePen</a>.</span>
+          </p>
+          <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+        </section>
+        <section>
+          <h2>What is JavaScript?</h2>
+          <ul>
+            <li>High-level, interpreted programming language</li>
+            <li>Used for both client-side and server-side scripting</li>
+            <li>Allows for interactivity and dynamic content on websites</li>
+          </ul>
+        </section>
+        <section>
+          <h2>Understanding the DOM Structure</h2>
+          <p>The Document Object Model (DOM) is a tree-like representation of an HTML document. JavaScript can be used
+            to interact with and manipulate the DOM.</p>
+          <ul>
+            <li>Root node: The document itself</li>
+            <li>Element nodes: HTML elements, such as body, header, and div</li>
+            <li>Attribute nodes: Attributes, such as class and id, of HTML elements</li>
+            <li>Text nodes: Text content within HTML elements</li>
+          </ul>
+        </section>
+        <section>
+          <h2>How JavaScript Interacts with the DOM Tree Elements</h2>
+          <p>JavaScript can be used to select, access, and modify elements in the DOM tree. This allows for dynamic
+            manipulation of web pages and user interactions.</p>
+          <ul>
+            <li>Selecting elements: getElementById, getElementsByClassName, querySelector</li>
+            <li>Accessing and modifying attributes: getAttribute, setAttribute</li>
+            <li>Changing element content: innerHTML, innerText, textContent</li>
+            <li>Adding and removing elements: createElement, appendChild, removeChild</li>
+          </ul>
+        </section>
+      </section>
+      <section>
+        <section>
+          <h1>Selecting and Accessing Elements with JavaScript</h1>
+        </section>
+        <section>
+          <h2>Selecting Elements</h2>
+          <p>JavaScript provides various methods to select elements from the DOM:</p>
+          <ul>
+            <li>getElementById: Selects a single element by its unique ID</li>
+            <li>getElementsByClassName: Selects all elements with a specific class name</li>
+            <li>getElementsByTagName: Selects all elements with a specific tag name</li>
+            <li>querySelector: Selects the first element that matches a CSS selector</li>
+            <li>querySelectorAll: Selects all elements that match a CSS selector</li>
+          </ul>
+        </section>
+        <section>
+          <h2>Accessing Element Attributes</h2>
+          <p>You can access and modify an element's attributes using JavaScript:</p>
+          <ul>
+            <li>getAttribute: Retrieves the value of a specified attribute</li>
+            <li>setAttribute: Sets the value of a specified attribute</li>
+            <li>removeAttribute: Removes a specified attribute</li>
+            <li>hasAttribute: Checks if an element has a specified attribute</li>
+          </ul>
+        </section>
+        <section>
+          <h2>Accessing Element Content</h2>
+          <p>JavaScript can be used to access and modify the content of an element:</p>
+          <ul>
+            <li>innerHTML: Gets or sets the HTML content of an element</li>
+            <li>innerText: Gets or sets the visible text content of an element</li>
+            <li>textContent: Gets or sets the text content of an element, including hidden text</li>
+          </ul>
+        </section>
+        <section>
+          <h2>Accessing Element Styles</h2>
+          <p>JavaScript can be used to manipulate the styles of an element:</p>
+          <ul>
+            <li>style: Accesses and modifies the inline styles of an element</li>
+            <li>getComputedStyle: Retrieves the computed styles of an element</li>
+          </ul>
+        </section>
+      </section>
+      <section>
+
+        <section>
+          <h1>Working with Element Content using JavaScript</h1>
+        </section>
+        <section>
+          <h2>Creating and Inserting Elements (using methods) </h2>
+          <p>You can create and insert new elements into the DOM using JavaScript:</p>
+          <ul>
+            <li>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement" target="_blank">
+                createElement
+              </a>
+              : Creates a new element
+            </li>
+            <li>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/append" target="_blank">
+                append
+              </a>
+
+              : Inserts a new element as the last child of a parent element
+            </li>
+            <li>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/prepend" target="_blank">
+
+                prepend
+              </a>
+              : Inserts a new element as the first child of a parent element
+            </li>
+
+          </ul>
+          <div>
+            <p>
+              Other methods for creating and inserting elements:
+              <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/appendChild" target="_blank">
+                appendChild,
+              </a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/createTextNode">
+                createTextNode<!--("Some-text") Result: Some text -->
+              </a>,
+              <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/insertBefore">
+                insertBefore
+              </a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/createDocumentFragment">
+
+                createDocumentFragment
+              </a>,
+              <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/cloneNode">
+                cloneNode
+              </a>,
+              <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/insertAdjacentHTML">
+                insertAdjacentHTML
+              </a>,
+
+
+            </p>
+          </div>
+        </section>
+        <section>
+          <h2>Modifying Element Content (using attributes)</h2>
+          <p>You can use JavaScript to modify the content of an element:</p>
+          <ul>
+            <li>innerText: Gets or sets the visible text content of an element</li>
+            <li>textContent: Gets or sets the text content of an element, including hidden text</li>
+          </ul>
+
+          Not adviced to use:
+          <ul>
+            <li>
+
+              <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML">
+                innerHTML
+              </a>: Gets or sets the HTML content of an element
+            </li>
+            <li>
+
+              <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/outerHTML">
+                outerHTML
+              </a>: Gets or sets the HTML content of an element, including the element itself
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2>Removing and Replacing Elements</h2>
+          <p>JavaScript allows you to remove and replace elements in the DOM:</p>
+          <ul>
+            <li>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/API/ChildNode/remove" target="_blank">
+                remove
+              </a>
+              : Removes an element from the DOM
+            </li>
+            <li>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/removeChild" target="_blank">
+                removeChild
+              </a>
+              : Removes a specified child element from a parent element
+            </li>
+            <li>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/replaceChild" target="_blank">
+                replaceChild
+              </a>
+              : Replaces a specified child element with a new element
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2>Cloning Elements</h2>
+          <p>JavaScript can be used to create a copy of an existing element:</p>
+          <ul>
+            <li>cloneNode: Creates a copy of an element, with the option to include or exclude child elements</li>
+          </ul>
+        </section>
+      </section>
+      <section>
+        <section>
+          <h1>Event Handling in JavaScript</h1>
+        </section>
+        <section>
+          <h2>Introduction to Events</h2>
+          <p>Events are actions or occurrences that happen in the browser:</p>
+          <ul>
+            <li>Clicks</li>
+            <li>Mouse movements</li>
+            <li>Keypresses</li>
+            <li>Form submissions</li>
+            <li>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/Events#event_listing" target="_blank">
+                And many more...
+              </a>
+            </li>
+          </ul>
+          <p>JavaScript can detect and respond to these events.</p>
+          <p><a href="https://developer.mozilla.org/en-US/docs/Web/Events" target="_blank">Learn more on MDN</a></p>
+        </section>
+        <section>
+          <h2>Event Handlers and Listeners</h2>
+          <p>Event listeners are functions that are called when an event occurs:</p>
+          <ul>
+            <li>
+              <a>
+                addEventListener
+
+              </a>
+              : Attaches an event listener to an element
+            </li>
+            <li>removeEventListener: Removes an event listener from an element</li>
+          </ul>
+          <p>You can have multiple listeners for the same event on the same element.</p>
+          <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener"
+              target="_blank">Learn more on MDN</a></p>
+        </section>
+        <section>
+          <h2>Event Types and Objects</h2>
+          <p>When an event is triggered, an event object is created:</p>
+          <ul>
+            <li>Contains information about the event</li>
+            <li>Can be used to control the event's behavior</li>
+          </ul>
+          <p>Some useful properties:</p>
+          <ul>
+            <li>type: The type of event</li>
+            <li>target: The element that triggered the event</li>
+            <li>currentTarget: The element that the event listener is attached to</li>
+            <li>preventDefault: Prevents the default action of the event</li>
+            <li>stopPropagation: Stops the event from up or down the DOM (Advanced stuff)</li>
+          </ul>
+          <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Event" target="_blank">Learn more on MDN</a></p>
+        </section>
+      </section>
+      <section>
+        <section>
+          <h1>Advanced Event Handling Techniques with JavaScript</h1>
+        </section>
+        <section>
+          <h2>Passing Parameters to Event Handlers</h2>
+          <p>Use an anonymous function to pass parameters to event handlers:</p>
+          <pre><code>
+        element.addEventListener('click', function(event) {
+          myFunction(event, param1, param2);
+        });
+          </code></pre>
+          <p><a
+              href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#using_an_anonymous_function_as_a_wrapper"
+              target="_blank">Learn more on MDN</a></p>
+        </section>
+        <section>
+          <h2>Event Propagation and Bubbling</h2>
+          <p>Events propagate through the DOM in two phases:</p>
+          <ul>
+            <li>Capturing phase: The event travels down from the root to the target element</li>
+            <li>Bubbling phase: The event bubbles up from the target element to the root</li>
+          </ul>
+          <p>Use event.stopPropagation() to prevgent further propagation of the current event in bubbling and capturing
+            phases:</p>
+          <pre><code>
+        element.addEventListener('click', function(event) {
+          event.stopPropagation();
+        });
+          </code></pre>
+          <p><a
+              href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events#event_bubbling_and_capture"
+              target="_blank">Learn more on MDN</a></p>
+        </section>
+        <section>
+          <iframe src="https://domevents.dev/" frameborder="0"
+            style="width: 120%; height: 100%; min-height: 500px; border: 0px;"></iframe>
+        </section>
+        <section>
+          <h2>Working with Different Handler Functions and Scopes</h2>
+          <p>Event handlers can be:</p>
+          <ul>
+            <li>Inline event handlers (not recommended)</li>
+            <li>Named functions</li>
+            <li>Anonymous functions</li>
+          </ul>
+          <p>Event handlers can have different scopes:</p>
+          <ul>
+            <li>Global scope</li>
+            <li>Function scope</li>
+            <li>Lexical scope</li>
+          </ul>
+          <p>Use bind() to change the value of this in event handlers:</p>
+          <pre><code>
+        element.addEventListener('click', myFunction.bind(myObject));
+          </code></pre>
+          <p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Events" target="_blank">Learn more
+              on MDN</a></p>
+        </section>
+      </section>
+    </div>
+  </div>
+  <script src="dist/reveal.js"></script>
+  <script>
+    Reveal.initialize();
+  </script>
+</body>
+
+</html>
