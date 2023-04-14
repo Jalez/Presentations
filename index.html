@@ -1,0 +1,1706 @@
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>JavaScript and the Document Object Model (DOM)</title>
+  <link rel="stylesheet" href="dist/reveal.css" />
+  <link rel="stylesheet" href="dist/theme/moon.css" id="theme" />
+  <link rel="stylesheet" href="dist/reset.css" />
+  <link rel="stylesheet" href="plugin/highlight/webcais.css">
+
+  <link rel="stylesheet" href="../css/infograph.css" id="theme" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+
+
+</head>
+
+<body>
+  <div style="
+     position: absolute; z-index: 100; top: 1em; left: 0em; display: flex;
+     width: 100%;
+      justify-content: space-between;
+      margin: 1em;
+    ">
+    <!-- List the h2 -->
+    <a style="max-height: 40px; color: #fff;  border: 0; border-radius: 4px; 
+     " href="#/DOM_class_hierarchy">
+      <div style="
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column;
+      width: 70px;
+">
+
+        <img src="../pictures/dom-class-hierarchy.svg" alt="DOM class hierarchy" height="40px">
+        <p style="
+         text-align: center;">
+
+          The DOM hierarchy tree
+        </p>
+      </div>
+    </a>
+    <a href="#/0" style=" 
+      color: #fff; text-decoration: none; font-weight: bold;
+     ">
+      First slide
+    </a>
+  </div>
+  <div class="reveal">
+    <div class="slides" style="font-size: 60%;">
+      <section>
+        <section data-background="#81237F" data-auto-animate>
+          <h1>JS & DOM </h1>
+          <!-- make a mention of me as author: By Jaakko Rajala -->
+          <ul>
+            <li>Introduction to the DOM</li>
+            <li>Accessing the DOM</li>
+            <li>Creating new nodes in the DOM</li>
+            <li>Event Handling in the DOM</li>
+          </ul>
+
+
+
+          <aside class="notes">
+            At this point, we have discussed the basics of JavaScript and how it can be used to create different
+            variables, functions and objects. In this lecture, we will go through the Document Object Model (DOM) and
+            how it can be used to manipulate the content, structure, and style of a web page using JavaScript.
+
+            This lecture will cover the following topics:
+            <ul>
+              <li>Introduction to the DOM</li>
+              <li>Creating Nodes</li>
+              <li>Accessing Nodes</li>
+              <li>Event Handling in Nodes</li>
+            </ul>
+
+          </aside>
+        </section>
+      </section>
+      <section>
+
+
+        <section data-background="#81237F">
+          <h2>Introduction to the DOM</h2>
+          <ul>
+            <li>What is the DOM?</li>
+            <li>Understanding the DOM tree structure</li>
+            <li>
+              The most important DOM nodes
+            </li>
+            <li>
+              The less important nodes
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3>What is the DOM?
+          </h3>
+          <ul>
+            <li>An in-memory representation of web documents like HTML and XML</li>
+            <li>Enables dynamic manipulation of web pages and interaction with users</li>
+            <li>Serves as a programming interface for HTML and XML documents</li>
+            <li>Although not part of JavaScript, it's commonly accessed and used through JavaScript</li>
+            <li>Structures documents as a tree of nodes and objects</li>
+            <li>Offers access to document structure, style, and content</li>
+            <li>Supports event handling and modification of elements and attributes</li>
+          </ul>
+          <h4>
+
+            <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction"
+              target="_blank">
+              Click here to learn more </a>
+          </h4>
+
+          <aside class="notes">
+
+            <p>
+              So, first of all, what is the DOM? The DOM is an in-memory representation of web documents like HTML and
+              XML. It enables dynamic manipulation of web pages and interaction with users, by playing a critical role
+              in bridging the gap between HTML/XML documents and JavaScript.
+            </p>
+            <p>
+
+              It's important to understand that the DOM is not part of the JavaScript language itself, but rather a
+              programming interface that is commonly used alongside JavaScript to access and modify the content of web
+              pages.
+
+            </p>
+
+            <p>
+              You could just as easily use the DOM with other programming languages, such as Python or Java. However,
+              since JavaScript is the most commonly used language for web development, it's also the most common
+              language to
+              use with the DOM.
+            </p>
+            <p>
+
+              One of the key aspects of the DOM is its tree-like hierarchical structure, which represents documents as a
+              collection of nodes and objects. This organization enables developers to easily traverse and manipulate
+              elements within a document, allowing for efficient modification of web page content.
+            </p>
+
+            <p>
+
+              The DOM provides a wide range of functionalities that help developers create more interactive and
+              user-friendly
+              web applications. One such functionality is event handling, which allows developers to create responses to
+              specific user actions, such as clicks or keypresses. Additionally, the DOM enables modification of
+              elements and attributes, empowering developers to create dynamic, data-driven web applications that cater
+              to user needs and preferences.
+            </p>
+            <p>
+
+              In summary, the DOM is an essential concept for web developers, acting as the bridge between HTML (or XML)
+              documents and JavaScript. Its hierarchical structure and the functionalities it offers allow developers to
+              create more engaging, interactive, and user-friendly web applications.
+            </p>
+          </aside>
+        </section>
+        <section>
+          <h3>Understanding the DOM Structure
+          </h3>
+          <p>
+
+            The DOM
+            is a tree-like representation of an HTML document, where each element in the document is represented by a
+            node in the tree.
+          </p>
+
+          <iframe
+            src="https://software.hixie.ch/utilities/js/live-dom-viewer/?%3C!DOCTYPE%20html%3E%0A%3Chtml%20lang%3D%22en%22%3E%0A%3Chead%3E%0A%20%20%3Ctitle%3EDocument%3C%2Ftitle%3E%0A%3C%2Fhead%3E%0A%3Cbody%3E%0A%20%20%3Ch1%20class%3D%22heading%22%20id%3D%22h1%22%3EA%20simple%20heading%3C%2Fh1%3E%0A%20%20%3Cp%20class%3D%22paragraph%22%3EA%20simple%20paragraph.%3C%2Fp%3E%0A%3C%2Fbody%3E%0A%3C%2Fhtml%3E"
+            style="width: 100%; height: 300px; border: 0; border-radius: 4px; overflow: hidden;
+             background-color: #fff;
+            " sandbox="allow-scripts allow-same-origin"></iframe>
+        </section>
+        <section>
+          <!-- <h2>Introduction to the DOM</h2> -->
+          <h3>
+
+            The most important nodes
+          </h3>
+
+          <ul id="common-nodes">
+            <li>Root node: The document itself
+
+              <pre><code data-line-numbers>const root = document
+              </code></pre>
+            </li>
+
+            <li>Element nodes: HTML elements, such as <code> &lt;body&gt;, 
+              &lt;header&gt; &lt;p&gt; &lt;div&gt; &lt;img&gt; or &lt;div&gt;</code>
+
+              <pre><code data-line-numbers>const body = document.body // returns the body element
+                const p = document.querySelector('p') // returns the first p element
+                </code></pre>
+            </li>
+            <li>Attribute nodes: Attributes, such as class, src and id, of HTML elements
+
+              <pre><code data-line-numbers>const pClass = p.getAttribute('class') // returns the value of the class attribute (e.g. 'paragraph')
+                  p.setAttribute('class', 'new-class') // sets the value of the class attribute to 'new-class'
+                  </code></pre>
+
+            </li>
+
+            <li>Text nodes: Text content within HTML elements
+              <pre><code data-line-numbers>const pText = p.textContent // returns the text content of the p element
+                    console.log(pText) // 'A simple paragraph.'
+                    p.textContent = 'New text' // sets the text content of the p element to 'New text' 
+                    </code></pre>
+            </li>
+          </ul>
+
+          <aside class="notes">
+            <p>
+
+              Let's delve deeper the tree structure. As we saw in the previous slide,
+              the DOM is made up of a collection of nodes, which are the basic building blocks of the DOM tree. Each
+              node represents a different type of object within the document, such as an HTML element, an attribute,
+              or a comment.
+            </p>
+
+            <p>
+              To better understand the DOM, we must first familiarize ourselves with the various types of nodes that
+              make up its structure. These nodes can be classified into four main categories:
+            </p>
+            <ul>
+              <li>
+
+                <p>
+                  The root node, also known as the document node, represents the entire document itself.
+                </p>
+                <p>
+                  This node
+                  serves as the starting point of the
+                  DOM
+                  tree and encompasses all other nodes within the document. In an HTML document, the root node is the
+                  document object, which represents the HTML document as a whole.
+                </p>
+              </li>
+              <li>
+
+                <p>
+                  Then we have the
+                  Element nodes, which correspond to HTML elements such as body, header, or div. These nodes serve as
+                  the building blocks of a web page's structure and directly affect the visual layout and organization
+                  of the content.
+                </p>
+              </li>
+              <li>
+
+                <p>Attribute nodes, which represent the attributes of HTML elements, such as class and id. These nodes
+                  provide additional information about the elements they are associated with and can be used for
+                  styling
+                  purposes or to uniquely identify specific elements on a page.
+                </p>
+                <p>Attribute nodes are properties of element nodes, and can be accessed and manipulated using
+                  JavaScript. For example, you can get the value of an attribute using the getAttribute() method,
+                  change the value of an attribute using the setAttribute() method,
+                  or remove an attribute using the removeAttribute() method.
+                  More about these methods as well as other
+                  DOM methods later.
+                </p>
+              </li>
+              <li>
+
+                We also have Text nodes, which contain the actual text content within HTML elements. Text nodes are
+                always children of an element node, and cannot have any child nodes of their own. They can be accessed
+                and manipulated using JavaScript to change their content.
+              </li>
+            </ul>
+          </aside>
+        </section>
+        <section>
+          <h3>
+            The less important nodes
+          </h3>
+
+          <ul id="less-common-nodes">
+            <li>Comment nodes: Comments within HTML documents (&lt;!-- comment -- &gt;)
+
+              <pre><code data-line-numbers>// Create a new comment node with the text "This is a comment"
+                  const newCommentNode = document.createComment('This is a comment'); 
+                  // Add the new comment node to the document
+                  document.body.appendChild(newCommentNode);
+              </code></pre>
+            </li>
+            <li>Document fragment nodes: A subset of a document
+              <pre>
+                <code data-line-numbers>const fragment = document.createDocumentFragment()//Create a new document fragment
+                  const newP = document.createElement('p') //Create a new paragraph element
+                  newP.textContent = 'A new paragraph' //Set the text content of the paragraph element
+                  fragment.appendChild(newP) //Append the paragraph element to the document fragment
+                  document.body.appendChild(fragment) //Append the paragraph element to the document 
+                  </code></pre>
+            </li>
+            <li>Document type nodes: The document type declaration (&lt;!DOCTYPE html&gt)
+
+              <pre><code data-line-numbers>const doctype = document.doctype //Returns the document type declaration
+                  console.log(doctype) // &lt;!DOCTYPE html&gt;
+                  </code></pre>
+            </li>
+          </ul>
+
+          <aside class="notes">
+
+            <h4>Less known/used node types</h4>
+            <p>
+              Now, there are additional node types that may be of interest, although they are less commonly used in
+              everyday
+              web development. These include:
+            </p>
+            <ul>
+              <li>
+                <p>
+                  Comment nodes, which represent comments within an HTML document. These nodes are not displayed in
+                  the
+                  rendered page, but can be accessed and manipulated using JavaScript.
+                </p>
+              </li>
+              <li>
+                <p>
+                  There are also these Document fragment nodes, which represent a subset of a document. A document
+                  fragment node represents a
+                  collection of nodes that are not part of a complete document. It can be used to group a set of nodes
+                  together before adding them to the DOM tree. Document fragment nodes do not have any parent nodes and
+                  are not part of the DOM tree until they are added to it using the appendChild() or insertBefore()
+                  method. Even then, only the child nodes of the document fragment node are added to the DOM tree.
+                  The created document fragment node itself becomes empty after it is appended to the body is because
+                  the appendChild() method used to append the fragment to the body actually moves the child nodes from
+                  the fragment to the parent node.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Document type nodes, which represent the document type declaration (DTD/DOCTYPE) of an HTML
+                  document.
+                  These nodes are not displayed in the rendered page, but can be accessed and manipulated using
+                  JavaScript.
+                </p>
+              </li>
+            </ul>
+        </section>
+
+        <!-- <section>
+          <h3>How JavaScript Interacts with the DOM Tree Elements </h3>
+
+          <p>JavaScript can be used to select, access, and modify nodes in the DOM tree.
+            This allows for dynamic
+            manipulation of web pages and user interactions.</p>
+          <ul>
+            <li>Selecting elements: getElementById, getElementsByClassName, querySelector, etc... </li>
+            <li>Changing element content: innerHTML, innerText, textContent </li>
+            <li>Adding and removing Nodes: createElement, createTextNode, appendChild, removeChild</li>
+            <li>Accessing and modifying attributes: getAttribute, setAttribute</li>
+          </ul>
+        </section> -->
+        <!-- <section data-auto-animate>
+          <h2>Introduction to the DOM</h2>
+          <p class="codepen" data-height="500" data-default-tab="html,result" data-slug-hash="LYJwWZZ" data-user="jalez"
+            style="height: 500px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+            <span>See the Pen <a href="https://codepen.io/jalez/pen/LYJwWZZ">
+                Untitled</a> by Jaakko Rajala (<a href="https://codepen.io/jalez">@jalez</a>)
+              on <a href="https://codepen.io">CodePen</a>.</span>
+          </p>
+          <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+        </section> -->
+      </section>
+      <section data-auto-animate>
+        <section data-background="#81237F">
+          <h2>
+            Accessing and Modifying the DOM using Node interfaces
+          </h2>
+          <ul>
+            <li>
+              What is an interface?
+            </li>
+            <li>
+              The DOM Node Interface
+            </li>
+            <li>
+              Document interface
+            </li>
+            <li>
+              Element interface
+            </li>
+            <li>
+              Attribute interface (Attr)
+            </li>
+            <li>
+              Character data interface (Text, Comment)
+            </li>
+            <li>
+              Other interfaces (Document type, Document fragment)
+            </li>
+            <li>
+              Important methods and properties from the interfaces
+            </li>
+          </ul>
+          <!-- <li>
+            Root node (document)
+            <ul>
+
+              <li>
+                Root node CRUD operations
+              </li>
+            </ul>
+          </li>
+          <li>
+            Element nodes (HTML elements)
+            <ul>
+              <li>
+                Selecting Elements (The older way)
+              </li>
+              <li>
+                Selecting Elements (The newer way)
+              </li>
+            </ul>
+          </li>
+          <li>
+            Attribute nodes (HTML attributes)
+          </li>
+          <li>
+            Text nodes (Text content)
+          </li>
+          <li>
+            Less important nodes (Comment, Document type, Document fragment)
+          </li>
+          </ul> -->
+        </section>
+        <section id="DOM_class_hierarchy">
+          <h3>
+            DOM class hierarchy
+          </h3>
+          <p>
+            The DOM class hierarchy is a tree structure that defines the relationships between the different interfaces
+            in the DOM API.
+          </p>
+          <div style="
+           display: flex;
+            flex-direction: row;
+          ">
+
+            <ul style="font-size: medium;">
+              <li>Node interface is the base interface for all other interfaces in the DOM API</li>
+              <li>Inherits from EventTarget interface for event handling support</li>
+              <li>Defines basic properties and methods for all nodes in DOM tree</li>
+              <li>Document, Element, and CharacterData interfaces extend Node interface</li>
+              <li>Document interface further extended by HTMLDocument interface for HTML documents</li>
+              <li>Element interface further extended by HTMLElement interface for HTML elements</li>
+              <li>CharacterData interface further extended by Text and Comment interfaces for text and comment nodes.
+              </li>
+            </ul>
+
+
+            <img src="../pictures/dom-class-hierarchy.svg" alt="
+          The DOM class hierarchy.
+          ">
+          </div>
+          <aside class="notes">
+            Here we can see that the Node interface is the base interface for all other interfaces in the DOM API. It
+            inherits from the EventTarget interface, which defines the properties and methods that all DOM nodes must
+            implement in order to support event handling.
+            The
+            Node interface defines the basic properties and methods that all nodes in the DOM tree must implement. The
+            Node interface is extended by the Document, Element, and CharacterData interfaces, which define the
+            properties and methods that all document nodes, element nodes, and character data nodes must implement. The
+            Document interface is extended by the HTMLDocument interface, which defines the properties and methods that
+            all HTML documents must implement. The Element interface is extended by the HTMLElement interface, which
+            defines the properties and methods that all HTML elements must implement. The CharacterData interface is
+            extended by the Text and Comment interfaces, which define the properties and methods that all
+            text nodes and comment nodes must implement.
+          </aside>
+        </section>
+        <section id="what_is_an_interface">
+          <h3>
+            What is an interface?
+          </h3>
+          <ul>
+            <li>Interfaces are a core concept in programming and software engineering.</li>
+            <li>JavaScript interfaces define the behavior of objects in the DOM API.</li>
+            <li>Interfaces enable polymorphism and code reuse.</li>
+            <li>The Node, Event, and Document interfaces, among others, specify the methods and properties objects must
+              implement in the DOM API.</li>
+            <li>Custom objects can be created with the same interfaces, promoting modularity.</li>
+            <li>Although not a built-in language feature, interfaces are heavily used in the DOM API and other
+              libraries.</li>
+            <li>
+              In this course, we will focus on the DOM API and how to use its interfaces to access and modify the DOM
+            </li>
+          </ul>
+
+          <aside class="notes">
+            <p>
+              Interfaces are a core concept in programming and software engineering. They define what a class or object
+              can do without specifying how it does it. They provide a clear separation of concerns between the
+              interface and the implementation, making it easier to maintain and update the codebase.
+            </p>
+            <p>
+              In the context of JavaScript and the DOM, interfaces define a specification for the behavior of objects in
+              the DOM API.
+            </p>
+            <p>
+
+              The DOM API is built upon a set of interfaces, including the Node Interface, the Event Interface, and the
+              Document Interface, among others.
+            </p>
+            <p>
+
+              These interfaces define the methods and properties that objects in the DOM API must implement.
+            </p>
+            <p>
+
+              By using these interfaces, different objects in the DOM API can be used interchangeably, enabling
+              polymorphism.
+            </p>
+            <p>
+
+              Interfaces also allow developers to create their own custom objects that implement the same methods and
+              properties as the objects in the DOM API, enabling greater modularity and code reuse.
+            </p>
+            <p>
+
+              In JavaScript, interfaces are not a built-in language feature like they are in Java or C#, but the concept
+              of interfaces is still used extensively in the DOM API and other libraries and frameworks.
+            </p>
+          </aside>
+        </section>
+        <section id="The_DOM_Node_Interface_basics">
+          <h3>
+            The DOM Node Interface
+          </h3>
+          <ul>
+            <li>
+              The DOM Node Interface is an abstract base class that many other DOM API objects are based on.
+            </li>
+            <li>
+              This allows for object types to be used similarly and interchangeably.
+            </li>
+          </ul>
+          <h4>
+
+            Node subclasses:
+          </h4>
+          <ul>
+            <li>
+
+              The Node Interface is an abstract class; there is no plain Node object.
+            </li>
+            <li>
+
+              All objects that implement Node functionality are based on one of its subclasses, the most notable being
+              Document, Element, and DocumentFragment.
+            </li>
+            <li>
+              Every kind of DOM node is represented by an interface based on Node, including Attribute (Attr),
+              CharacterData(Text, Comment), and DocumentType.
+            </li>
+          </ul>
+        </section>
+        <section id="The_DOM_Node_Interface_properties">
+          <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node#instance_properties">
+            <h3>
+              The DOM Node Interface properties
+            </h3>
+          </a>
+          <ul>
+            <li>
+              Node Interface has several properties, including Node.baseURI, Node.childNodes, Node.firstChild,
+              Node.isConnected, Node.lastChild, Node.nextSibling, Node.nodeName, Node.nodeType, Node.nodeValue,
+              Node.ownerDocument, Node.parentNode, Node.parentElement, Node.previousSibling, and Node.textContent.
+            </li>
+            <li>
+              Node inherits properties from its parent, EventTarget.
+            </li>
+            <li>
+              These properties provide information about the node's relationship with its parent and children.
+            </li>
+          </ul>
+        </section>
+        <section id="The_DOM_Node_Interface_properties_examples">
+          <h3>
+            The DOM Node Interface properties examples
+          </h3>
+          <iframe
+            src="https://software.hixie.ch/utilities/js/live-dom-viewer/?%3C!DOCTYPE%20html%3E%0A%3Chtml%20lang%3D%22en%22%3E%0A%3Chead%3E%0A%20%20%3Ctitle%3EDocument%3C%2Ftitle%3E%0A%3C%2Fhead%3E%0A%3Cbody%3E%0A%20%20%3Ch1%20class%3D%22heading%22%20id%3D%22h1%22%3EA%20simple%20heading%3C%2Fh1%3E%0A%20%20%3Cp%20class%3D%22paragraph%22%3EA%20simple%20paragraph.%3C%2Fp%3E%0A%3C%2Fbody%3E%0A%3C%2Fhtml%3E"
+            style="width: 100%; height: 300px; border: 0; border-radius: 4px; overflow: hidden;
+             background-color: #fff;
+            " sandbox="allow-scripts allow-same-origin"></iframe>
+          <pre><code data-line-numbers
+            style="max-height: 200px;"
+            >
+            console.log(h1.childNodes); // logs an array-like list of child nodes of the h1 element (in this case, a text node)
+            console.log(h1.firstChild); // logs the first child node of the h1 element, which is a 
+            console.log(h1.lastChild); // logs the last child node of the h1 element, which is a text node: "A simple heading"
+            console.log(h1.nextSibling); // logs the next sibling node of the h1 element, which is a text node containing a line break: "\n  " (whitespaces are also considered text nodes!)
+            console.log(h1.previousSibling); // logs the previous sibling node of the h1 element, which is a text node containing a line break: "\n  " (whitespaces are also considered text nodes!)
+            console.log(h1.parentNode); // logs the parent node of the h1 element, which is the body element
+            console.log(h1.parentElement); // logs the parent element of the h1 element, which is the body element
+            console.log(h1.textContent); // logs the text content of the h1 element, which is "A simple heading"
+          </code></pre>
+          <a href="http://localhost:5500/" target="_blank" rel="noopener noreferrer" class="try-it-yourself">
+            <h4>
+              Try these yourself
+            </h4>
+          </a>
+
+        </section>
+        <section id="The_DOM_Node_Interface_Methods">
+          <h3>
+            The DOM Node Interface Methods
+          </h3>
+          <ul>
+            <li>
+              Node Interface has several methods, including Node.appendChild(), Node.cloneNode(),
+              Node.compareDocumentPosition(), Node.contains(), Node.getRootNode(), Node.hasChildNodes(),
+              Node.insertBefore(), Node.isDefaultNamespace(), Node.isEqualNode(), Node.isSameNode(),
+              Node.lookupPrefix(), Node.lookupNamespaceURI(), Node.normalize(), Node.removeChild(), and
+              Node.replaceChild().
+            </li>
+            <li>
+              Node inherits methods from its parent, EventTarget.
+
+            </li>
+            <li>
+              These methods provide ways to manipulate and interact with the node and its children. </li>
+          </ul>
+        </section>
+        <section id="The_DOM_Node_Interface_Methods_examples">
+          <h3>
+            The DOM Node Interface methods examples
+          </h3>
+          <iframe
+            src="https://software.hixie.ch/utilities/js/live-dom-viewer/?%3C!DOCTYPE%20html%3E%0A%3Chtml%20lang%3D%22en%22%3E%0A%3Chead%3E%0A%20%20%3Ctitle%3EDocument%3C%2Ftitle%3E%0A%3C%2Fhead%3E%0A%3Cbody%3E%0A%20%20%3Ch1%20class%3D%22heading%22%20id%3D%22h1%22%3EA%20simple%20heading%3C%2Fh1%3E%0A%20%20%3Cp%20class%3D%22paragraph%22%3EA%20simple%20paragraph.%3C%2Fp%3E%0A%3C%2Fbody%3E%0A%3C%2Fhtml%3E"
+            style="width: 100%; height: 300px; border: 0; border-radius: 4px; overflow: hidden;
+             background-color: #fff;
+            " sandbox="allow-scripts allow-same-origin"></iframe>
+          <pre><code data-line-numbers
+              style="max-height: 200px;"
+              >const h1 = document.getElementById('h1');
+
+const p = document.createElement('p');
+p.textContent = 'A new paragraph.';
+
+h1.appendChild(p);
+console.log(h1.childNodes); // logs the updated array-like list of child nodes of the h1 element
+
+const h1Clone = h1.cloneNode(true);
+console.log(h1Clone); // logs a clone of the h1 element, including all of its descendants
+
+const docPos = h1.compareDocumentPosition(p);
+console.log(docPos); // logs the document position of the p element relative to the h1 element
+
+const containsP = h1.contains(p);
+console.log(containsP); // logs true because the h1 element contains the p element
+
+const root = h1.getRootNode();
+console.log(root); // logs the root node of the h1 element, which is the HTML document object
+
+const hasChildNodes = h1.hasChildNodes();
+console.log(hasChildNodes); // logs true because the h1 element has child nodes
+
+const textNode = document.createTextNode('A new text node.');
+h1.insertBefore(textNode, p);
+console.log(h1.childNodes); // logs the updated array-like list of child nodes of the h1 element
+
+const defaultNS = h1.isDefaultNamespace('http://www.w3.org/1999/xhtml');
+console.log(defaultNS); // logs true because the h1 element is in the XHTML namespace
+
+const h1Equal = h1.isEqualNode(h1Clone);
+console.log(h1Equal); // logs false because the h1 element and its clone are not the same node
+
+const h1Same = h1.isSameNode(h1);
+console.log(h1Same); // logs true because h1 and h1 are the same node
+
+const prefix = h1.lookupPrefix('http://www.w3.org/1999/xhtml');
+console.log(prefix); // logs "html" because "html" is the prefix associated with the XHTML namespace
+
+const uri = h1.lookupNamespaceURI('http://www.w3.org/1999/xhtml');
+console.log(uri); // logs "http://www.w3.org/1999/xhtml" because that is the namespace URI associated with the prefix "html"
+
+h1.normalize();
+console.log(h1.childNodes); // logs the updated array-like list of child nodes of the h1 element after normalizing adjacent text nodes
+
+h1.removeChild(textNode);
+console.log(h1.childNodes); // logs the updated array-like list of child nodes of the h1 element after removing the text node
+
+h1.replaceChild(p, h1Clone);
+console.log(h1.childNodes); // logs the updated array-like list of child nodes of the h1 element after replacing the h1Clone element with the p element
+
+            </code></pre>
+          <a href="http://localhost:5500/" target="_blank" rel="noopener noreferrer" class="try-it-yourself">
+            <h4>
+              Try these yourself
+            </h4>
+          </a>
+        </section>
+        <section id="The_Document_Node_Interface_basics">
+          <h3>The Document Node Interface</h3>
+          <ul>
+            <li>
+              The Document interface represents the entire HTML or XML document, and is the root of the document tree.
+            </li>
+            <li>
+              It provides methods and properties to access and manipulate the contents of a document.
+            </li>
+            <li>
+              The Document inherits properties and methods from its parent interface, Node, and by extension, the
+              EventTarget interface.
+            </li>
+            <li>
+              The Document interface also has a number of specific properties and methods, such as documentElement,
+              createElement(), createTextNode(), and querySelector().
+            </li>
+            <li>
+              Other interfaces inherit from Document, such as HTMLDocument and XMLDocument, which provide additional
+              properties and methods specific to HTML and XML documents, respectively.
+            </li>
+          </ul>
+          <aside class="notes">
+            <p>
+              The Document interface represents the entire HTML or XML document and serves as the root of the document
+              tree.
+              It provides methods and properties to access and manipulate the contents of a document.
+            </p>
+            <p>
+              The Document inherits properties and methods from its parent interface, Node, which provides methods and
+              properties to work with any type of node. By extension, it also inherits from the EventTarget interface,
+              which allows event listeners to be attached to the document.
+            </p>
+            <p>
+              The Document interface has a number of specific properties and methods that are used to interact with the
+              document. For example, documentElement represents the root element of the document, and createElement(),
+              createTextNode(), and querySelector() are used to create new elements, text nodes, and to query for
+              elements
+              in the document.
+            </p>
+            <p>
+              Other interfaces inherit from Document to provide additional functionality specific to certain types of
+              documents. For example, HTMLDocument and XMLDocument provide additional properties and methods specific to
+              HTML and XML documents, respectively.
+            </p>
+          </aside>
+        </section>
+        <section id="The_Document_Node_Interface_properties">
+          <h3>The Document Node Interface Properties</h3>
+          <p>
+            The Document interface inherits properties from its parent interface, Node, and by extension that
+            interface's parent,
+            EventTarget.
+          </p>
+          <div style="max-height: 400px; overflow: auto;">
+            <ul>
+              <li>URL: returns the document location as a string.</li>
+              <li>anchors: returns a collection of all anchor elements in the document with a name attribute.</li>
+              <li>body: returns the body element of the document.</li>
+              <li>cookie: gets or sets the cookie associated with the document.</li>
+              <li>doctype: returns the DocumentType node of the document.</li>
+              <li>documentElement: returns the root element of the document (usually the HTML element).</li>
+              <li>forms: returns a collection of all form elements in the document.</li>
+              <li>head: returns the head element of the document.</li>
+              <li>images: returns a collection of all img elements in the document.</li>
+              <li>implementation: returns the DOMImplementation object that handles this document.</li>
+              <li>links: returns a collection of all a and area elements in the document with an href attribute.</li>
+              <li>readyState: returns the current state of the document (loading, interactive, complete).</li>
+              <li>referrer: returns the URL of the document that loaded this document.</li>
+              <li>title: gets or sets the title of the document.</li>
+              <li>write(content): writes HTML expressions or JavaScript code to a document.</li>
+              <li>writeln(content): writes the same as write(), but adds a newline character after each statement.</li>
+            </ul>
+          </div>
+        </section>
+        <section id="The_Document_Node_Interface_methods">
+          <h3>The Document Node Interface Methods</h3>
+          <p>
+            The Document interface inherits methods from its parent interface, Node, and by extension that
+            interface's parent,
+            EventTarget.
+          </p>
+          <p>
+            Below are the most used methods that are specific to the Document interface.
+          </p>
+          <div style="max-height: 400px; overflow: auto;">
+            <ul>
+              <li>createAttribute(name): creates a new attribute node with the specified name.</li>
+              <li>createComment(data): creates a new comment node with the specified data.</li>
+              <li>createDocumentFragment(): creates a new empty DocumentFragment node.</li>
+              <li>createElement(tagName): creates a new element node with the specified tag name.</li>
+              <li>createEvent(eventInterface): creates a new event of the specified type.</li>
+              <li>createNodeIterator(root, whatToShow, filter, entityReferenceExpansion): creates a new NodeIterator
+                object.</li>
+              <li>createTextNode(data): creates a new text node with the specified data.</li>
+              <li>getElementById(id): returns the element with the specified ID.</li>
+              <li>getElementsByClassName(classNames): returns a collection of elements with the specified class name.
+              </li>
+              <li>getElementsByName(name): returns a collection of elements with the specified name.</li>
+              <li>getElementsByTagName(tagName): returns a collection of elements with the specified tag name.</li>
+            </ul>
+          </div>
+        </section>
+        <section id="The_Element_Node_Interface_basics">
+          <h3>
+            The Element Node Interface
+
+          </h3>
+          <ul>
+            <li>Element is a base class for all element objects in a Document</li>
+            <li>
+              Element also inherits properties and methods from its parent interface, Node, and by extension that
+              interface's parent, EventTarget.
+            </li>
+            <li>More specific classes inherit from Element</li>
+            <li>HTMLElement interface is the base interface for HTML elements</li>
+            <li>SVGElement interface is the basis for all SVG elements</li>
+            <li>Most functionality is specified further down the class hierarchy</li>
+          </ul>
+          <aside class="notes">
+            <p>
+
+              The Element class is the most general base class from which all element objects in a Document inherit.
+            </p>
+            <p>
+              It inherits from the previously discussed Node interface, which provides methods and properties to
+              work
+              with any type of node.
+            </p>
+            <p>
+
+              It is the foundation for all elements in a Document.
+            </p>
+            <p>
+
+              This class only has methods and properties common to all kinds of elements.
+            </p>
+            <p>
+
+              More specific classes inherit from Element, which allows for more specialized functionality and
+              behavior
+              for different types of elements.
+            </p>
+            <p>
+
+              Examples of base interfaces include HTMLElement for HTML elements and SVGElement for SVG elements.
+            </p>
+            <p>
+
+              Most functionality is specified further down the class hierarchy. This is because the Element class is
+              intended to be a base class for all element objects in a Document, and not a class that is used
+              directly.
+            </p>
+          </aside>
+        </section>
+        <section id="The_Element_Node_Interface_properties">
+          <h3>
+            The Element Node Interface Properties
+          </h3>
+          <p>
+
+            Element inherits properties from its parent interface, Node, and by extension that interface's parent,
+            EventTarget. Here are the most used properties that are specific to the Element interface:
+          </p>
+
+          <div style="max-height: 400px; overflow: auto;">
+            <ul>
+
+
+              <li>classList: returns a live DOMTokenList collection of the class attributes of the element.</li>
+              <li>clientHeight: returns the inner height of the element, including padding but not border or margin.
+              </li>
+              <li>clientLeft: returns the width of the element's left border.</li>
+              <li>clientTop: returns the width of the element's top border.</li>
+              <li>clientWidth: returns the inner width of the element, including padding but not border or margin.
+              </li>
+              <li>id: sets or returns the ID of the element.</li>
+              <li>innerHTML: sets or returns the HTML content of the element.</li>
+              <li>outerHTML: sets or returns the HTML content of the element, including the element itself.</li>
+              <li>scrollHeight: returns the height of the scrollable content of the element.</li>
+              <li>scrollLeft: sets or returns the number of pixels that the element's content is scrolled to the
+                left.
+              </li>
+              <li>scrollTop: sets or returns the number of pixels that the element's content is scrolled from the
+                top.
+              </li>
+              <li>scrollWidth: returns the width of the scrollable content of the element.</li>
+              <li>style: returns the inline style of the element as a CSSStyleDeclaration object.</li>
+              <li>tagName: returns the tag name of the element in uppercase letters.</li>
+            </ul>
+          </div>
+        </section>
+        <section id="The_Element_Node_Interface_properties_examples">
+          <h3>
+            The Element Node Interface methods examples
+          </h3>
+          <iframe
+            src="https://software.hixie.ch/utilities/js/live-dom-viewer/?%3C!DOCTYPE%20html%3E%0A%3Chtml%20lang%3D%22en%22%3E%0A%3Chead%3E%0A%20%20%3Ctitle%3EDocument%3C%2Ftitle%3E%0A%3C%2Fhead%3E%0A%3Cbody%3E%0A%20%20%3Ch1%20class%3D%22heading%22%20id%3D%22h1%22%3EA%20simple%20heading%3C%2Fh1%3E%0A%20%20%3Cp%20class%3D%22paragraph%22%3EA%20simple%20paragraph.%3C%2Fp%3E%0A%3C%2Fbody%3E%0A%3C%2Fhtml%3E"
+            style="width: 100%; height: 300px; border: 0; border-radius: 4px; overflow: hidden;
+             background-color: #fff;
+            " sandbox="allow-scripts allow-same-origin"></iframe>
+          <pre><code data-line-numbers
+              style="max-height: 200px;"
+              >console.log(h1.assignedSlot); // logs null because the h1 element is not a slotable element
+              console.log(h1.attributes); // logs a NamedNodeMap object representing the attributes of the h1 element
+              console.log(h1.childElementCount); // logs the number of child elements of the h1 element, which is 0 in this case
+              console.log(h1.children); // logs an HTMLCollection object representing the child elements of the h1 element
+              console.log(h1.classList); // logs a DOMTokenList object representing the class attribute of the h1 element
+              console.log(h1.className); // logs the value of the class attribute of the h1 element, which is "heading"
+              console.log(h1.clientHeight); // logs the height of the h1 element's content area, including padding but not including borders or margins
+              console.log(h1.clientLeft); // logs the width of the h1 element's left border
+              console.log(h1.clientTop); // logs the width of the h1 element's top border
+              console.log(h1.clientWidth); // logs the width of the h1 element's content area, including padding but not including borders or margins
+              console.log(h1.elementTiming); // logs null because the h1 element is not associated with any performance timings
+              console.log(h1.firstElementChild); // logs null because the h1 element does not have any child elements
+              console.log(h1.id); // logs the value of the id attribute of the h1 element, which is "h1"
+              console.log(h1.innerHTML); // logs the inner HTML of the h1 element, which is "A simple heading"
+              console.log(h1.lastElementChild); // logs null because the h1 element does not have any child elements
+              console.log(h1.localName); // logs the local name of the h1 element, which is "h1"
+              console.log(h1.namespaceURI); // logs the namespace URI of the h1 element, which is "http://www.w3.org/1999/xhtml"
+              console.log(h1.nextElementSibling); // logs the next sibling element of the h1 element, which is a p element in this case
+              console.log(h1.outerHTML); // logs the outer HTML of the h1 element, including the element itself and its contents
+              console.log(h1.part); // logs an empty string because the h1 element is not associated with any custom parts
+              console.log(h1.prefix); // logs null because the h1 element is not in a namespace that has a prefix
+              console.log(h1.previousElementSibling); // logs null because the h1 element does not have any previous sibling elements
+              console.log(h1.scrollHeight); // logs the height of the h1 element's content, including padding but not including borders or margins
+              console.log(h1.scrollLeft); // logs the number of pixels that the h1 element's content is scrolled to the left
+              console.log(h1.scrollLeftMax); // logs the maximum number of pixels that the h1 element's content can be scrolled to the left
+              console.log(h1.scrollTop); // logs the number of pixels that the h1 element's content is scrolled from the top
+              console.log(h1.scrollTopMax); // logs the maximum number of pixels that the h1 element's content can be scrolled from the top
+              console.log(h1.scrollWidth); // logs the width of the h1 element's content, including padding but not including borders or margins
+              console.log(h1.shadowRoot); // logs null because the h1 element is not a shadow host element
+              console.log(h1.slot); // logs an empty string because the h1 element is not a slotable element
+              console.log(h1.tagName); // logs the tag name of the h1 element, which is "H1"</code></pre>
+        </section>
+        <section id="The_Element_Node_Interface_methods">
+          <h3>
+            The Element Node Interface methods
+          </h3>
+          <div style="max-height: 400px; overflow: auto; ">
+
+            <ul>
+              <li><strong>closest(selector)</strong>: returns the closest ancestor of the element that matches the
+                given
+                selector.</li>
+              <li><strong>getElementsByClassName(classNames)</strong>: returns a live HTMLCollection of all child
+                elements that have any of the specified class names.</li>
+              <li><strong>getElementsByTagName(tagName)</strong>: returns a live HTMLCollection of all child
+                elements
+                with the specified tag name.</li>
+              <li><strong>matches(selector)</strong>: returns true if the element matches the given selector;
+                otherwise,
+                false.</li>
+              <li><strong>querySelector(selector)</strong>: returns the first child element that matches the given
+                selector.</li>
+              <li><strong>querySelectorAll(selector)</strong>: returns a static NodeList of all child elements that
+                match the given selector.</li>
+            </ul>
+          </div>
+
+
+
+        </section>
+        <section id="The_Element_Node_Interface_methods_examples">
+          <h3>
+            The Element Node Interface methods examples
+          </h3>
+          <iframe
+            src="https://software.hixie.ch/utilities/js/live-dom-viewer/?%3C!DOCTYPE%20html%3E%0A%3Chtml%20lang%3D%22en%22%3E%0A%3Chead%3E%0A%20%20%3Ctitle%3EDocument%3C%2Ftitle%3E%0A%3C%2Fhead%3E%0A%3Cbody%3E%0A%20%20%3Ch1%20class%3D%22heading%22%20id%3D%22h1%22%3EA%20simple%20heading%3C%2Fh1%3E%0A%20%20%3Cp%20class%3D%22paragraph%22%3EA%20simple%20paragraph.%3C%2Fp%3E%0A%3C%2Fbody%3E%0A%3C%2Fhtml%3E"
+            style="width: 100%; height: 300px; border: 0; border-radius: 4px; overflow: hidden;
+             background-color: #fff;
+            " sandbox="allow-scripts allow-same-origin"></iframe>
+          <pre><code data-line-numbers
+              style="max-height: 200px;"
+              >const h1 = document.getElementById('h1');
+
+              const closestAncestor = h1.closest('body');
+              console.log(closestAncestor); // logs the body element, which is the closest ancestor of the h1 element that matches the selector "body"
+              
+              const elementsByClassName = h1.getElementsByClassName('heading');
+              console.log(elementsByClassName); // logs a live HTMLCollection containing the h1 element because it has the "heading" class
+              
+              const elementsByTagName = h1.getElementsByTagName('h1');
+              console.log(elementsByTagName); // logs a live HTMLCollection containing the h1 element because it has the "h1" tag name
+              
+              const matchesSelector = h1.matches('.heading');
+              console.log(matchesSelector); // logs true because the h1 element matches the selector ".heading"
+              
+              const firstMatchingChild = h1.querySelector('.heading');
+              console.log(firstMatchingChild); // logs the h1 element itself because it is the first child element that matches the selector ".heading"
+              
+              const allMatchingChildren = h1.querySelectorAll('.heading');
+              console.log(allMatchingChildren); // logs a static NodeList containing the h1 element because it is the only child element that matches the selector ".heading"
+              
+            </code></pre>
+          <a href="http://localhost:5500/" target="_blank" rel="noopener noreferrer" class="try-it-yourself">
+            <h4>
+              Try these yourself
+            </h4>
+          </a>
+        </section>
+        <section id="The_CharacterData_Node_Interface_basics">
+
+          <h3>
+            The CharacterData Node Interface
+          </h3>
+          <ul>
+            <li>The CharacterData interface represents a node containing character data.</li>
+            <li>CharacterData nodes can be accessed and manipulated using the same methods as other types of nodes in
+              the DOM.</li>
+            <li>CharacterData nodes are typically found as children of Element or DocumentType nodes.</li>
+            <li>The Text and Comment interfaces inherit from the CharacterData interface.</li>
+          </ul>
+
+          <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/CharacterData" target="_blank">Learn more on
+              MDN</a></p>
+          <aside class="notes">
+            <p>
+              The CharacterData interface represents a node containing character data.
+            </p>
+            <p>
+              CharacterData nodes can be accessed and manipulated using the same methods as other types of nodes in the
+              DOM, such as appendChild(), removeChild(), and replaceChild().
+            </p>
+            <p>
+              CharacterData nodes are typically found as children of Element or DocumentType nodes. They can also occur
+              as children of other CharacterData nodes, such as in the case of Text and Comment nodes.
+            </p>
+            <p>
+              The Text and Comment interfaces inherit from the CharacterData interface, which means that they inherit
+              its methods and properties in addition to their own.
+            </p>
+          </aside>
+        </section>
+        <section id="The_CharacterData_Node_Interface_properties">
+          <h3>
+            The CharacterData Node Interface Properties
+          </h3>
+          <p>
+            The CharacterData interface inherits properties from its parent interface, Node. Here are the most commonly
+            used properties specific to the CharacterData interface:
+          </p>
+          <div style="max-height: 400px; overflow: auto;">
+            <ul>
+              <li>data: sets or returns the textual data of the node.
+                <pre><code data-line-numbers>const textNode = document.createTextNode("Hello World!");
+                console.log(textNode.data); // logs "Hello World!"
+                textNode.data = "Hello World! I am a text node.";
+                console.log(textNode.data); // logs "Hello World! I am a text node."
+                </code></pre>
+              </li>
+              <li>length: returns the number of characters in the node's textual data.
+                <pre><code data-line-numbers>const textNode = document.createTextNode("Hello World!");
+                console.log(textNode.length); // logs 11
+                </code></pre>
+              </li>
+            </ul>
+          </div>
+
+          <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/CharacterData#instance_properties"
+              target="_blank">Learn more on
+              MDN</a></p>
+        </section>
+        <section>
+          <h3>Selecting Elements (The older way)</h3>
+          <p>JavaScript provides various methods to select elements from the DOM:</p>
+          <ul>
+            <li>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById">
+                <code>getElementById</code>
+              </a>: Selects a single element by its unique ID
+              <pre><code data-line-numbers>const demoElement = document.getElementById("demo"); // returns a single element with id="demo"
+              </code></pre>
+            </li>
+            <li>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/getElementsByClassName" target="_blank">
+                getElementsByClassName
+
+              </a>
+              : Selects all elements with a specific class name
+              <pre><code data-line-numbers>const demoElements = document.getElementsByClassName("demo"); // returns a collection of elements with class="demo"
+              </code></pre>
+            </li>
+            <li>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/getElementsByTagName" target="_blank">
+                getElementsByTagName
+              </a>
+              getElementsByTagName: Selects all elements with a specific tag name
+              <pre><code data-line-numbers>const demoElements = document.getElementsByTagName("div"); // returns a collection of div elements
+              </code></pre>
+            </li>
+
+          </ul>
+
+        </section>
+        <section>
+          <h3>Selecting Elements (The newer way)</h3>
+          <ul>
+
+            <li>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector" target="_blank">
+
+                <code>querySelector</code>
+              </a>
+
+              : Selects the first element that matches a CSS selector
+              <pre><code data-line-numbers>let demoElement = document.querySelector(".demo"); // Selects the first element with class "demo"
+                demoElement = document.querySelector("#demo"); // Selects the element with id "demo"
+                demoElement = document.querySelector("div"); // Selects the first div element
+              </code></pre>
+            </li>
+            <li>
+
+              <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll" target="_blank">
+                <code>
+                  querySelectorAll
+                </code>
+              </a>
+              : Selects all elements that match a CSS selector
+              <pre><code data-line-numbers>const demoElements = document.querySelectorAll(".demo"); // Selects all elements with class "demo"
+                demoElements = document.querySelectorAll("div"); // Selects all div elements
+              </code></pre>
+            </li>
+          </ul>
+          <aside class="notes">
+            <h3>
+
+              Slide title: Selecting Elements (The newer way)
+            </h3>
+
+            <p>
+              This slide covers the newer, more convenient ways of selecting elements in HTML using JavaScript.
+            </p>
+            <p>
+              We will discuss two methods:
+            </p>
+
+            <p>
+              <strong>
+                querySelector:
+              </strong>
+              This method selects the first element that matches a CSS selector. You can use a period to
+              select elements by class, a hash symbol to select elements by ID, or the element name to select by tag
+              name.
+            </p>
+            <p>
+              Here are some examples:
+            </p>
+            <pre>
+              <code data-line-numbers>
+            document.querySelector(".demo"); // Selects the first element with class "demo"
+            document.querySelector("#demo"); // Selects the element with id "demo"
+            document.querySelector("div"); // Selects the first div element
+              </code> </pre>
+            <p>
+              <strong>
+                querySelectorAll:
+              </strong>
+              This method selects all elements that match a CSS selector. Here are some examples:
+            </p>
+
+            <pre>
+              <code data-line-numbers>
+                document.querySelectorAll(".demo"); // Selects all elements with class "demo"
+                document.querySelectorAll("div"); // Selects all div elements
+              </code>
+            </pre>
+            <p>
+              These methods are much more powerful than the older methods and allow you to easily manipulate your
+              HTML
+              document.
+            </p>
+          </aside>
+        </section>
+        <section>
+          <h3>Selecting elements: older vs newer methods</h3>
+          <iframe height="300" style="width: 100%;" scrolling="no" title="Untitled"
+            src="https://codepen.io/jalez/embed/PoyPEzM?default-tab=js%2Cresult&editable=true" frameborder="no"
+            loading="lazy" allowtransparency="true" allowfullscreen="true">
+            See the Pen <a href="https://codepen.io/jalez/pen/PoyPEzM">
+              Untitled</a> by Jaakko Rajala (<a href="https://codepen.io/jalez">@jalez</a>)
+            on <a href="https://codepen.io">CodePen</a>.
+          </iframe>
+          <!-- <p class="codepen" data-height="100%" data-default-tab="html,result" data-slug-hash="PoyPEzM"
+            data-user="jalez"
+            style="height: 100%; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+            <span>See the Pen <a href="https://codepen.io/jalez/pen/PoyPEzM">
+                Untitled</a> by Jaakko Rajala (<a href="https://codepen.io/jalez">@jalez</a>)
+              on <a href="https://codepen.io">CodePen</a>.</span>
+          </p>
+          <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script> -->
+        </section>
+        <section>
+          <h3>Accessing Element Attributes</h3>
+          <p>You can access and modify an element's attributes using JavaScript:</p>
+          <ul>
+            <li>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/getAttribute?retiredLocale=fi"
+                target="_blank">
+                <code>getAttribute</code>
+              </a>: Retrieves the value of a specified attribute
+              <pre><code data-line-numbers> const src = document.getElementById("myImage").getAttribute("src");
+                </code></pre>
+
+            </li>
+            <li>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/setAttribute?retiredLocale=fi"
+                target="_blank">
+                <code>setAttribute</code>
+              </a>: Sets the value of a specified attribute
+              <pre><code data-line-numbers> document.getElementById("myImage").setAttribute("src", "landscape.jpg");
+                </code></pre>
+            </li>
+            <li>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/removeAttribute?retiredLocale=fi"
+                target="_blank">
+                <code>removeAttribute</code>
+              </a>
+              : Removes a specified attribute
+              <pre><code data-line-numbers> document.getElementById("myImage").removeAttribute("src");
+                </code></pre>
+
+            </li>
+            <li>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/hasAttribute?retiredLocale=fi"
+                target="_blank">
+                <code>hasAttribute</code>
+              </a>
+              : Checks if an element has a specified attribute
+              <pre><code data-line-numbers> const hasSrc = document.getElementById("myImage").hasAttribute("src");
+                </code></pre>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2>Accessing Element Content</h2>
+          <p>JavaScript can be used to access and modify the content of an element:</p>
+          <ul>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML?retiredLocale=fi"
+                target="_blank">
+                innerHTML
+              </a>: Gets or sets the HTML content of an element (use with caution!)
+              <pre><code data-line-numbers> document.getElementById("demo").innerHTML = "Hello JavaScript!";
+                </code></pre>
+            </li>
+            <li>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/innerText?retiredLocale=fi"
+                target="_blank">
+                <code>innerText</code>
+              </a>: Gets or sets the visible text content of an element
+              <pre><code data-line-numbers> document.getElementById("demo").innerText = "Hello JavaScript!";
+                </code></pre>
+            </li>
+            <li>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent?retiredLocale=fi"
+                target="_blank">
+                <code>textContent</code>
+              </a>
+              : Gets or sets the text content of an element, including hidden text
+              <pre><code data-line-numbers> document.getElementById("demo").textContent = "Hello JavaScript!";
+                </code></pre>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2>Accessing Element Styles</h2>
+          <p>JavaScript can be used to manipulate the styles of an element:</p>
+          <ul>
+            <li>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style?retiredLocale=fi"
+                target="_blank">
+                <code>style</code>
+              </a>
+              : Accesses and modifies the inline styles of an element
+              <pre><code data-line-numbers> document.getElementById("demo").style.color = "red";
+                </code></pre>
+            </li>
+            <li>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/classList?retiredLocale=fi"
+                target="_blank">
+                <code>classList</code>
+              </a>
+              : Accesses and modifies the class attribute of an element
+              <pre><code data-line-numbers> document.getElementById("demo").classList.add("red") // adds a class
+                document.getElementById("demo").classList.remove("red") // removes a class
+                document.getElementById("demo").classList.toggle("red") // toggles a class
+                </code></pre>
+            </li>
+
+            <li>
+
+              <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/getComputedStyle" target="_blank">
+                <code>getComputedStyle</code>
+              </a>: Retrieves the computed styles of an element
+              <pre><code data-line-numbers> const styles = window.getComputedStyle(document.getElementById("demo")); // retrieves the computed styles
+                const color = styles.getPropertyValue("color"); // retrieves the value of a specific style
+                </code></pre>
+            </li>
+
+          </ul>
+        </section>
+        <section>
+          <h2>Accessing Element Dimensions</h2>
+          <ul>
+
+            <li>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect" target="_blank">
+                <code>getBoundingClientRect</code>
+              </a>
+              : Retrieves the size and position of an element
+              <pre><code data-line-numbers> const rect = document.getElementById("demo").getBoundingClientRect();
+              </code></pre>
+            </li>
+            <li>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/clientWidth" target="_blank">
+                <code>clientWidth</code>
+              </a> and <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/clientHeight" target="_blank">
+                <code>clientHeight</code>
+              </a>
+              : Retrieves the width/height of an element, including padding but not border
+              <pre><code data-line-numbers> const width = document.getElementById("demo").clientWidth;
+              </code></pre>
+            <li>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetWidth" target="_blank">
+                <code>offsetWidth</code>
+              </a> and <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetHeight"
+                target="_blank">
+                <code>offsetHeight</code> </a>
+              : Retrieves the width/height of an element, including padding and border
+              <pre><code data-line-numbers> const width = document.getElementById("demo").offsetWidth;
+              </code></pre>
+            </li>
+            <li>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/scrollWidth" target="_blank">
+                <code>scrollWidth</code>
+              </a> and <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/scrollHeight"
+                target="_blank">
+                <code>scrollHeight</code> </a>
+              : Retrieves the width/height of an element, including padding, border, and scrollbar
+              <pre><code data-line-numbers> const width = document.getElementById("demo").scrollWidth;
+              </code></pre>
+          </ul>
+        </section>
+      </section>
+      <section>
+        <section data-background="#81237F">
+          <h2>Working with Element Content using JavaScript</h2>
+        </section>
+        <section>
+          <h2>Creating and Inserting Elements (using methods) </h2>
+          <p>You can create and insert new elements into the DOM using JavaScript:</p>
+          <ul>
+            <li>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement" target="_blank">
+                createElement
+              </a>
+              : Creates a new element
+            </li>
+            <li>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/append" target="_blank">
+                append
+              </a>
+
+              : Inserts a new element as the last child of a parent element
+            </li>
+            <li>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/prepend" target="_blank">
+
+                prepend
+              </a>
+              : Inserts a new element as the first child of a parent element
+            </li>
+
+          </ul>
+          <div>
+            <p>
+              Other methods for creating and inserting elements:
+              <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/appendChild" target="_blank">
+                appendChild,
+              </a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/createTextNode">
+                createTextNode<!--("Some-text") Result: Some text -->
+              </a>,
+              <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/insertBefore">
+                insertBefore
+              </a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/createDocumentFragment">
+
+                createDocumentFragment
+              </a>,
+              <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/cloneNode">
+                cloneNode
+              </a>,
+              <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/insertAdjacentHTML">
+                insertAdjacentHTML
+              </a>,
+
+
+            </p>
+          </div>
+        </section>
+        <section>
+          <h3>Modifying Element Content (using attributes)</h3>
+          <p>You can use JavaScript to modify the content of an element:</p>
+          <ul>
+            <li>innerText: Gets or sets the visible text content of an element</li>
+            <li>textContent: Gets or sets the text content of an element, including hidden text</li>
+          </ul>
+
+          <h3>
+
+            Not adviced to use:
+          </h3>
+          <ul>
+            <li>
+
+              <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML">
+                innerHTML
+              </a>: Gets or sets the HTML content of an element
+            </li>
+            <li>
+
+              <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/outerHTML">
+                outerHTML
+              </a>: Gets or sets the HTML content of an element, including the element itself
+            </li>
+          </ul>
+          <aside class="notes">
+            <p>innerHTML is not recommended because it can be used to inject malicious HTML code into a page.</p>
+          </aside>
+        </section>
+        <section>
+          <h2>Removing and Replacing Elements</h2>
+          <p>JavaScript allows you to remove and replace elements in the DOM:</p>
+
+          <ul>
+            <li>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/API/ChildNode/remove" target="_blank">
+                remove
+              </a>
+              : Removes an element from the DOM
+            </li>
+            <li>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/removeChild" target="_blank">
+                removeChild
+              </a>
+              : Removes a specified child element from a parent element
+            </li>
+            <li>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/replaceChild" target="_blank">
+                replaceChild
+              </a>
+              : Replaces a specified child element with a new element
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2>Cloning Elements</h2>
+          <p>JavaScript can be used to create a copy of an existing element:</p>
+          <ul>
+            <li>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/cloneNode" target="_blank">
+                cloneNode
+              </a>
+              : Creates a copy of an element, with the option to include or exclude child elements
+            </li>
+          </ul>
+        </section>
+      </section>
+      </section>
+      <section>
+        <section data-background="#81237F">
+          <h2>Event Handling in JavaScript</h2>
+          <ul>
+            <li>Introduction to Events</li>
+            <li>Event Handlers and Listeners</li>
+            <li>
+              Event Types and Objects
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3>Introduction to Events</h3>
+          <p>
+            Event are from the EventTarget interface, and are used to handle notifications about things that happen in
+            the DOM.
+          </p>
+          <p>Events are actions or occurrences that happen in the browser:</p>
+          <ul>
+            <li>Clicks</li>
+            <li>Scrolling</li>
+            <li>Mouse movements</li>
+            <li>Keypresses</li>
+            <li>Form submissions</li>
+            <li>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/Events#event_listing" target="_blank">
+                And many more...
+              </a>
+            </li>
+          </ul>
+          <p>JavaScript can detect and respond to these events.</p>
+          <p><a href="https://developer.mozilla.org/en-US/docs/Web/Events" target="_blank">Learn more on MDN</a></p>
+          <aside class="notes">
+            <p>
+              The EventTarget interface is implemented by objects that can receive events and may have listeners for
+              them. In other words, any target of events implements the three methods associated with this interface.
+            </p>
+            <p>
+              Element, and its children, as well as Document and Window, are the most common event targets, but other
+              objects can be event targets, too. For example XMLHttpRequest, AudioNode, and AudioContext are also event
+              targets.
+            </p>
+            <p>
+              Many event targets (including elements, documents, and windows) also support setting event handlers via
+              onevent properties and attributes.
+            </p>
+          </aside>
+        </section>
+        <section>
+          <h3>Event Handlers and Listeners</h3>
+          <p>Event listeners are functions that are called when an event occurs:</p>
+          <ul>
+            <li>
+              <a>
+                addEventListener
+
+              </a>
+              : Attaches an event listener to an element
+              <pre><code data-line-numbers>
+                  function doSomething() {
+                    console.log("Something happened");
+                  }
+                  element.addEventListener("click", doSomething, false); // false = bubbling, true = capturing, third parameter is optional because it is false by default
+                </code></pre>
+            </li>
+            <li>removeEventListener: Removes an event listener from an element. Requires a reference to the same
+              function
+              <pre><code data-line-numbers>
+                  element.removeEventListener("click", doSomething, false); // false = bubbling, true = capturing,
+                </code></pre>
+
+            </li>
+          </ul>
+          <p>You can have multiple listeners for the same event on the same element.</p>
+          <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener"
+              target="_blank">Learn more on MDN</a></p>
+        </section>
+        <section>
+          <h3>Event Types and Objects</h3>
+          <p>When an event is triggered, an event object is created:</p>
+          <ul>
+            <li>Contains information about the event</li>
+            <li>Can be used to control the event's behavior</li>
+          </ul>
+          <p>Some useful properties:</p>
+          <ul>
+            <li>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/API/Event/type" target="_blank">
+                type </a>: The type of event
+            </li>
+            <li>target: The element that triggered the event</li>
+            <li>currentTarget: The element that the event listener is attached to</li>
+            <li>preventDefault: Prevents the default action of the event</li>
+            <li>stopPropagation: Stops the event from up or down the DOM (Advanced stuff)</li>
+          </ul>
+          <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Event" target="_blank">Learn more on MDN</a>
+          </p>
+        </section>
+      </section>
+      <section>
+        <section data-background="#81237F">
+          <h2>Advanced Event Handling</h2>
+        </section>
+        <section>
+          <h3>Passing Parameters to Event Handlers</h3>
+          <div style="max-height: 400px; 
+            overflow: auto;
+           ">
+            <ul>
+              <li>
+                <p>
+                  Inline Function: You can create an inline function and pass it to the event listener as a callback.
+                  Inside the function, you can pass the necessary parameters. (<strong>
+                    Not recommended, because it is difficult to reuse the function
+                  </strong>)
+                </p>
+                <pre><code data-line-numbers> &lt;button onclick=&quot;myFunction('param1', 'param2')&quot;&gt;Click me&lt;/button&gt;
+
+                &lt;script&gt;
+                  function myFunction(param1, param2) {
+                    console.log(param1 + ' ' + param2);
+                  }
+                &lt;/script&gt;
+            </code></pre>
+              </li>
+              <li>
+                <p>Use an anonymous function to pass parameters to event handlers:</p>
+                <pre><code data-line-numbers> element.addEventListener('click', function(event) {
+                myFunction(event, param1, param2);
+              });
+            </code></pre>
+              </li>
+              <li>
+                <p>
+                  Event Object: When an event is triggered, an Event object is passed to the event handler function.
+                </p>
+                <pre><code data-line-numbers> function myFunction(event) {
+                console.log(event.target.id);
+              }
+              
+              document.getElementById('myButton').addEventListener('click', myFunction);
+            </code></pre>
+              </li>
+              <li>
+                <p>
+
+                  Function Reference: You can also pass a reference to a function and use the bind() method to pass
+                  parameters.
+                </p>
+                <pre><code data-line-numbers> function myFunction(param1, param2) {
+                console.log(param1 + ' ' + param2);
+              }
+              
+              document.getElementById('myButton').addEventListener('click', myFunction.bind(null, 'param1', 'param2'))
+              </code></pre>
+              </li>
+            </ul>
+          </div>
+          <p><a
+              href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#using_an_anonymous_function_as_a_wrapper"
+              target="_blank">Learn more on MDN</a></p>
+        </section>
+        <section>
+          <h2>Event Propagation and Bubbling</h2>
+          <p>Events propagate through the DOM in two phases:</p>
+          <ul>
+            <li>Capturing phase: The event travels down from the root to the target element</li>
+            <li>Bubbling phase: The event bubbles up from the target element to the root</li>
+          </ul>
+          <p>Use event.stopPropagation() to prevent further propagation of the current event in bubbling and capturing
+            phases:</p>
+          <pre><code data-line-numbers>
+        element.addEventListener('click', function(event) {
+          event.stopPropagation();
+        });
+          </code></pre>
+          <p><a
+              href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events#event_bubbling_and_capture"
+              target="_blank">Learn more on MDN</a></p>
+          <aside class="notes">
+
+            <p>Event propagation is a very important concept in JavaScript. It is used in many libraries and frameworks
+              like
+              React, Angular, Vue, etc.</p>
+          </aside>
+        </section>
+        <section>
+          <iframe src="https://domevents.dev/" frameborder="0"
+            style="width: 120%; height: 100%; min-height: 500px; border: 0px;"></iframe>
+        </section>
+        <section>
+          <h2>Working with Different Handler Functions and Scopes</h2>
+          <p>Event handlers can be:</p>
+          <ul>
+            <li>Inline event handlers (not recommended)</li>
+            <li>Named functions</li>
+            <li>Anonymous functions</li>
+          </ul>
+          <p>Event handlers can have different scopes:</p>
+          <ul>
+            <li>Global scope</li>
+            <li>Function scope</li>
+            <li>Lexical scope</li>
+          </ul>
+          <p>Use bind() to change the value of this in event handlers:</p>
+          <pre><code>
+        element.addEventListener('click', myFunction.bind(myObject));
+          </code></pre>
+          <p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Events" target="_blank">Learn more
+              on MDN</a></p>
+        </section>
+      </section>
+    </div>
+  </div>
+  <script src="dist/reveal.js"></script>
+  <script src="plugin/zoom/zoom.js"></script>
+  <script src="plugin/notes/notes.js"></script>
+  <script src="plugin/search/search.js"></script>
+  <script src="plugin/markdown/markdown.js"></script>
+  <script src="plugin/highlight/highlight.js"></script>
+  <script>
+    Reveal.initialize({
+      controls: true,
+      progress: true,
+      center: true,
+      hash: true,
+      slideNumber: true,
+
+      // Learn about plugins: https://revealjs.com/plugins/
+      plugins: [
+        RevealZoom,
+        RevealNotes,
+        RevealSearch,
+        RevealMarkdown,
+        RevealHighlight
+      ]
+    })
+  </script>
+</body>
+
+</html>
