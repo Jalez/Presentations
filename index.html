@@ -31,7 +31,7 @@
       width: 70px;
 ">
 
-        <img src="../pictures/dom-class-hierarchy.svg" alt="DOM class hierarchy" height="40px">
+        <img src="./pictures/dom-class-hierarchy.svg" alt="DOM class hierarchy" height="40px">
         <p style="
          text-align: center;">
 
@@ -44,6 +44,7 @@
      ">
       First slide
     </a>
+
   </div>
   <div class="reveal">
     <div class="slides" style="font-size: 60%;">
@@ -367,9 +368,12 @@
       <section data-auto-animate>
         <section data-background="#81237F">
           <h2>
-            Accessing and Modifying the DOM using Node interfaces
+            Accessing and Modifying the DOM using the DOM API
           </h2>
           <ul>
+            <li>
+              The DOM, the DOM API and JavaScript
+            </li>
             <li>
               What is an interface?
             </li>
@@ -426,12 +430,57 @@
           </li>
           </ul> -->
         </section>
+        <section id="THE_DOM_API_and_JavaScript">
+          <ul>
+            <li>The DOM is provided by the browser</li>
+            <li>The browser creates a DOM tree when a web page is loaded</li>
+            <li>The DOM tree can be manipulated using JavaScript</li>
+            <li>JavaScript provides a set of APIs (Application Programming Interfaces) to interact with the DOM</li>
+            <li>The most common API used to manipulate the DOM is the DOM API</li>
+          </ul>
+        </section>
+        <section id="what_are_apis">
+          <h2>What are APIs?</h2>
+          <ul>
+            <li>APIs are a set of protocols, routines, and tools that allow software applications to communicate with
+              each other.</li>
+            <li>APIs provide a defined set of rules and specifications for how different software components should
+              interact with each other.</li>
+            <li>APIs can be used for a wide range of purposes, such as integrating different software applications,
+              accessing data from external sources, and automating routine tasks.</li>
+            <li>APIs can take many forms, such as web APIs, libraries, or operating system APIs.</li>
+          </ul>
+          <aside class="notes">
+            <h2>What are APIs?</h2>
+            <ul>
+              <li>APIs are a set of protocols, routines, and tools that allow software applications to communicate with
+                each other.</li>
+              <p>For example, a web application might use an API to retrieve data from a remote server or to perform
+                some action on another web application.</p>
+
+              <li>APIs provide a defined set of rules and specifications for how different software components should
+                interact with each other.</li>
+              <p>These rules might include what kinds of requests can be made, what data formats should be used, and how
+                errors or exceptions should be handled.</p>
+
+              <li>APIs can be used for a wide range of purposes, such as integrating different software applications,
+                accessing data from external sources, and automating routine tasks.</li>
+              <p>For example, a business might use an API to integrate their inventory management system with their
+                e-commerce website, allowing them to automatically update inventory levels and product information.</p>
+
+              <li>APIs can take many forms, such as web APIs, libraries, or operating system APIs.</li>
+              <p>Web APIs use HTTP protocols to exchange data over the internet, libraries provide code-level access to
+                a software application, and operating system APIs provide access to system-level functionality.</p>
+            </ul>
+          </aside>
+
+        </section>
         <section id="DOM_class_hierarchy">
           <h3>
-            DOM class hierarchy
+            The DOM API hierarchy
           </h3>
           <p>
-            The DOM class hierarchy is a tree structure that defines the relationships between the different interfaces
+            The DOM API hierarchy is a tree structure that displays the relationships between the different interfaces
             in the DOM API.
           </p>
           <div style="
@@ -439,11 +488,11 @@
             flex-direction: row;
           ">
 
-            <ul style="font-size: medium;">
-              <li>Node interface is the base interface for all other interfaces in the DOM API</li>
-              <li>Inherits from EventTarget interface for event handling support</li>
+            <ul style="font-size: medium; flex: 1">
+              <li><strong>Node</strong> interface is the base interface for all other interfaces in the DOM API</li>
+              <li>Inherits from <strong>EventTarget</strong> interface for event handling support</li>
               <li>Defines basic properties and methods for all nodes in DOM tree</li>
-              <li>Document, Element, and CharacterData interfaces extend Node interface</li>
+              <li><strong>Document, Element, and CharacterData</strong> interfaces extend Node interface</li>
               <li>Document interface further extended by HTMLDocument interface for HTML documents</li>
               <li>Element interface further extended by HTMLElement interface for HTML elements</li>
               <li>CharacterData interface further extended by Text and Comment interfaces for text and comment nodes.
@@ -451,9 +500,142 @@
             </ul>
 
 
-            <img src="../pictures/dom-class-hierarchy.svg" alt="
-          The DOM class hierarchy.
-          ">
+            <svg xmlns="http://www.w3.org/2000/svg" width="602" height="403" viewBox="0 0 602 403">
+              <defs>
+                <style>
+                  @import url(https://fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic%7CPT+Mono);
+
+                  @font-face {
+                    font-family: 'PT Mono';
+                    font-weight: 700;
+                    font-style: normal;
+                    src: local('PT Mono Bold'), url(/font/PTMonoBold.woff2) format('woff2'), url(/font/PTMonoBold.woff) format('woff'), url(/font/PTMonoBold.ttf) format('truetype');
+                  }
+
+                  text {
+                    font-family: 'PT Mono', monospace;
+                    font-size: 12px;
+                    font-weight: 700;
+                    fill: #f3f1ef;
+                    pointer-events: none;
+                    user-select: none;
+
+                  }
+
+
+                  path {
+                    fill: #943b34;
+                    stroke-width: 2px;
+                  }
+
+                  path:hover {
+                    fill: #af4d4d;
+                  }
+                </style>
+              </defs>
+              <g id="dom" fill="none" fill-rule="evenodd" stroke="none" stroke-width="1">
+                <g id="dom-class-hierarchy.svg">
+                  <a href="#/The_DOM_EventTarget_Interface_basics"
+                    style="background-color: #f3f1ef; color: #000; width: 100%; height: 100%; display: block; text-decoration: none;">
+                    <path id="Rectangle-9" d="M181 6h118v28H181z" />
+                    <text id="EventTarget">
+                      <tspan x="200.9" y="24">EventTarget</tspan>
+                    </text>
+                  </a>
+                  <a href="#/The_DOM_Node_Interface_basics">
+                    <path id="Rectangle-8" d="M181 74h118v28H181z" />
+                    <text id="Node">
+                      <tspan x="225.6" y="91">
+                        Node
+                      </tspan>
+                    </text>
+                  </a>
+                  <path id="Line-2" fill-rule="nonzero" d="M240.5 39.5l7 14h-6v17h-2v-17h-6l7-14z" />
+
+                  <a href="#/The_Element_Node_Interface_basics">
+                    <path id="Rectangle-8-Copy" d="M181 144h118v28H181z" />
+                    <text id="Element" font-family="PTMono-Regular, PT Mono" font-size="12" font-weight="normal">
+                      <tspan x="214.8" y="161">Element </tspan>
+                    </text>
+                  </a>
+
+                  <path id="Line-2-Copy" fill-rule="nonzero" d="M240.5 109.5l7 14h-6v17h-2v-17h-6l7-14z" />
+
+                  <a>
+
+                    <path id="Rectangle-8-Copy-4" d="M181 230h118v28H181z" /><text id="HTMLElement">
+                      <tspan x="200.4" y="247">HTMLElement </tspan>
+                    </text>
+                  </a>
+                  <path id="Line-2-Copy-4" fill-rule="nonzero"
+                    d="M240.5 195.5l7 14h-6v17h-2v-17h-6l7-14zM72.5 158.5l7.273 13.86-5.999.117L74 183.98l.02 1-2 .04-.02-1-.226-11.503-5.998.118L72.5 158.5z" />
+                  <path id="Rectangle-8-Copy-6" d="M171 300h138v28H171z" /><text id="HTMLBodyElement">
+                    <tspan x="186" y="317">HTMLBodyElement </tspan>
+                  </text>
+                  <path id="Line-2-Copy-6" fill-rule="nonzero" d="M240.5 265.5l7 14h-6v17h-2v-17h-6l7-14z" />
+                  <path id="Rectangle-8-Copy-7" d="M1 300h138v28H1z" />
+                  <text id="HTMLInputElement">
+                    <tspan x="13.4" y="317">HTMLInputElement </tspan>
+                  </text>
+                  <path id="Line-2-Copy-7" fill-rule="nonzero"
+                    d="M159 261l-6.753 14.12-3.685-4.736-29.448 22.905-.79.614-1.227-1.578.79-.614 29.448-22.906-3.684-4.735L159 261z" />
+                  <path id="Rectangle-8-Copy-8" d="M339 300h138v28H339z" /><text id="HTMLAnchorElement">
+                    <tspan x="348.3" y="317">HTMLAnchorElement </tspan>
+                  </text>
+                  <path id="Line-2-Copy-8" fill-rule="nonzero"
+                    d="M312 261l15.305 3.28-3.749 4.684 29.069 23.255.78.625-1.249 1.562-.78-.625-29.069-23.254-3.748 4.685L312 261z" />
+                  <a href="#/The_Document_Node_Interface_basics">
+
+                    <path id="Rectangle-8-Copy-2" d="M22 126h98v28H22z" /><text id="Document"
+                      font-family="PTMono-Regular, PT Mono" font-size="12" font-weight="normal">
+                      <tspan x="42.2" y="144">Document </tspan>
+                    </text>
+                  </a>
+                  <path id="Rectangle-8-Copy-2" d="M22 192h98v28H22z" /><text id="HTMLDocument"
+                    font-family="PTMono-Regular, PT Mono" font-size="12" font-weight="normal">
+                    <tspan x="27.8" y="210">HTMLDocument </tspan>
+                  </text>
+                  <a href="#/The_CharacterData_Node_Interface_basics">
+
+                    <path id="Line-2-Copy-2" fill-rule="nonzero"
+                      d="M168 90l-8.862 12.902-2.905-5.251-34.749 19.224-.875.484-.968-1.75.875-.484 34.749-19.224-2.904-5.25L168 90z" />
+                    <path id="Rectangle-8-Copy-3" d="M369 126h118v28H369z" /><text id="CharacterData">
+                      <tspan x="381.2" y="144">CharacterData </tspan>
+                    </text>
+                  </a>
+                  <path id="Line-2-Copy-3" fill-rule="nonzero"
+                    d="M314 91l15.648.379-2.813 5.299 36.634 19.439.883.468-.937 1.767-.884-.469-36.633-19.439-2.812 5.301L314 91zM458 159l13.93 7.138-4.836 3.552 9.712 13.218.592.806-1.612 1.184-.592-.806-9.712-13.218-4.834 3.553L458 159zM400 158l-1.376 15.592-5.11-3.146-8.662 14.078-.524.852-1.704-1.048.524-.852 8.663-14.078-5.11-3.143L400 158z" />
+                  <text id="Document-as-a-whole">
+                    <tspan x="6.6" y="235">Document as a whole</tspan>
+                  </text><text id="&lt;input-type=&quot;…&quot;&gt;">
+                    <tspan x="13.4" y="341">&lt;input type=&quot;…&quot;&gt;</tspan>
+                  </text><text id="&lt;body&gt;">
+                    <tspan x="220.4" y="341">&lt;body&gt;</tspan>
+                  </text><text id="&lt;a-href=&quot;…&quot;&gt;">
+                    <tspan x="365.8" y="341">&lt;a href=&quot;…&quot;&gt;</tspan>
+                  </text><text id="&lt;div&gt;...&lt;/div&gt;">
+                    <tspan x="192.6" y="188">&lt;</tspan>
+                    <tspan x="199.8" y="188">div</tspan>
+                    <tspan x="221.4" y="188">&gt;</tspan>
+                    <tspan x="228.6" y="188">...</tspan>
+                    <tspan x="250.2" y="188">&lt;/</tspan>
+                    <tspan x="264.6" y="188">div</tspan>
+                    <tspan x="286.2" y="188">&gt;</tspan>
+                  </text>
+                  <path id="Rectangle-8-Copy-3" d="M449 192h78v28h-78z" /><text id="Comment">
+                    <tspan x="463.8" y="210">Comment </tspan>
+                  </text><text id="&lt;!--comment--&gt;">
+                    <tspan x="442.6" y="237">&lt;!--comment--&gt;</tspan>
+                  </text>
+                  <path id="Rectangle-8-Copy-3" d="M342 192h78v28h-78z" /><text id="Text">
+                    <tspan x="365.6" y="210">Text </tspan>
+                  </text><text id="&quot;Hello&quot;">
+                    <tspan x="356.8" y="237">&quot;Hello&quot;</tspan>
+                  </text>
+                </g>
+              </g>
+            </svg>
+
           </div>
           <aside class="notes">
             Here we can see that the Node interface is the base interface for all other interfaces in the DOM API. It
@@ -476,13 +658,12 @@
           </h3>
           <ul>
             <li>Interfaces are a core concept in programming and software engineering.</li>
-            <li>JavaScript interfaces define the behavior of objects in the DOM API.</li>
             <li>Interfaces enable polymorphism and code reuse.</li>
-            <li>The Node, Event, and Document interfaces, among others, specify the methods and properties objects must
-              implement in the DOM API.</li>
             <li>Custom objects can be created with the same interfaces, promoting modularity.</li>
-            <li>Although not a built-in language feature, interfaces are heavily used in the DOM API and other
+            <li>Although not a built-in language feature in JavaScript, interfaces are heavily used in the DOM API and
+              other
               libraries.</li>
+            <li>JavaScript interfaces define the behavior of objects in the DOM API.</li>
             <li>
               In this course, we will focus on the DOM API and how to use its interfaces to access and modify the DOM
             </li>
@@ -802,19 +983,30 @@ console.log(h1.childNodes); // logs the updated array-like list of child nodes o
 
           </h3>
           <ul>
-            <li>Element is a base class for all element objects in a Document</li>
+            <li>
+              Every visible element on a web page, such as paragraphs (
+              &lt;p&gt;
+              ), images, buttons, and forms, as well as the body, inherit properties and methods from the Element node
+              <pre><code data-line-numbers>console.log(document.body); // &lt;body&gt;...&lt;/body&gt; (body element)                
+              </code></pre>
+            </li>
+            <li>Element is a base interface for all element objects in a Document</li>
             <li>
               Element also inherits properties and methods from its parent interface, Node, and by extension that
-              interface's parent, EventTarget.
+              interface's parent, EventTarget, which allows event listeners to be attached to the element.
             </li>
-            <li>More specific classes inherit from Element</li>
-            <li>HTMLElement interface is the base interface for HTML elements</li>
-            <li>SVGElement interface is the basis for all SVG elements</li>
-            <li>Most functionality is specified further down the class hierarchy</li>
+            <li>More specific interfaces inherit from Element:
+              <ul>
+                <li>HTMLElement interface is the base interface for HTML elements</li>
+                <li>SVGElement interface is the basis for all SVG elements</li>
+              </ul>
+            </li>
           </ul>
+          <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element"
+            target="_blank">Learn more on
+            MDN</a></p>
           <aside class="notes">
             <p>
-
               The Element class is the most general base class from which all element objects in a Document inherit.
             </p>
             <p>
@@ -862,28 +1054,41 @@ console.log(h1.childNodes); // logs the updated array-like list of child nodes o
             <ul>
 
 
-              <li>classList: returns a live DOMTokenList collection of the class attributes of the element.</li>
-              <li>clientHeight: returns the inner height of the element, including padding but not border or margin.
-              </li>
-              <li>clientLeft: returns the width of the element's left border.</li>
-              <li>clientTop: returns the width of the element's top border.</li>
-              <li>clientWidth: returns the inner width of the element, including padding but not border or margin.
+              <li>classList: returns a live DOMTokenList collection of the class attributes of the element.
+                <pre><code data-line-numbers>
+                  console.log(h1.classList); // DOMTokenList(2) ["heading", "main-heading", value: "heading main-heading"]
+                </code></pre>
               </li>
               <li>id: sets or returns the ID of the element.</li>
               <li>innerHTML: sets or returns the HTML content of the element.</li>
               <li>outerHTML: sets or returns the HTML content of the element, including the element itself.</li>
-              <li>scrollHeight: returns the height of the scrollable content of the element.</li>
-              <li>scrollLeft: sets or returns the number of pixels that the element's content is scrolled to the
-                left.
+              <li>
+                <strong>
+                  nextElementSibling
+                </strong>
+                : returns the next element node at the same tree level as the current element.
+                <pre><code data-line-numbers>
+                  console.log(h1.nextElementSibling); // &lt;p&gt;This is a paragraph&lt;p&gt; (paragraph element)
+                </code></pre>
               </li>
-              <li>scrollTop: sets or returns the number of pixels that the element's content is scrolled from the
-                top.
+              <li>
+                <strong>
+                  previousElementSibling
+                </strong>
+                : returns the previous element node at the same tree level as the current element
               </li>
-              <li>scrollWidth: returns the width of the scrollable content of the element.</li>
-              <li>style: returns the inline style of the element as a CSSStyleDeclaration object.</li>
+              <li>style: returns the inline style of the element as a CSSStyleDeclaration object.
+                <pre><code data-line-numbers>
+                  console.log(h1.style); // CSSStyleDeclaration {0: "color", color: "red", length: 1}
+                </code></pre>
+              </li>
               <li>tagName: returns the tag name of the element in uppercase letters.</li>
             </ul>
           </div>
+          <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element#instance_properties"
+            target="_blank">Learn more on
+            MDN</a></p>
+          
         </section>
         <section id="The_Element_Node_Interface_properties_examples">
           <h3>
@@ -994,6 +1199,7 @@ console.log(h1.childNodes); // logs the updated array-like list of child nodes o
             </h4>
           </a>
         </section>
+
         <section id="The_CharacterData_Node_Interface_basics">
 
           <h3>
@@ -1003,7 +1209,21 @@ console.log(h1.childNodes); // logs the updated array-like list of child nodes o
             <li>The CharacterData interface represents a node containing character data.</li>
             <li>CharacterData nodes can be accessed and manipulated using the same methods as other types of nodes in
               the DOM.</li>
-            <li>CharacterData nodes are typically found as children of Element or DocumentType nodes.</li>
+            <li>CharacterData nodes are typically found as children of Element or DocumentType nodes.
+              <pre>
+                <code data-line-numbers
+                  style="max-height: 200px;"
+                  >//As a child of an Element node
+                  const h1 = document.getElementById('h1');
+                  const textNode = h1.firstChild;
+                  console.log(textNode); // logs the text node containing the text "A simple heading"
+                  //creating a text node using the documents createTextNode() method
+                  const textNode = document.createTextNode('This is a text node');
+                  console.log(textNode); // logs the text node containing the text "This is a text node"
+
+                </code></pre>
+
+            </li>
             <li>The Text and Comment interfaces inherit from the CharacterData interface.</li>
           </ul>
 
@@ -1053,6 +1273,53 @@ console.log(h1.childNodes); // logs the updated array-like list of child nodes o
           </div>
 
           <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/CharacterData#instance_properties"
+              target="_blank">Learn more on
+              MDN</a></p>
+        </section>
+        <section id="The_CharacterData_Node_Interface_methods">
+          <h3>
+            The CharacterData Node Interface Methods
+          </h3>
+          <p>
+            The CharacterData interface inherits methods from its parent interface, Node. Here are the most commonly
+            used methods specific to the CharacterData interface:
+          </p>
+          <div style="max-height: 400px; overflow: auto;">
+            <ul>
+              <li>appendData(data): Appends the given string to the end of the node's data.
+                <pre><code data-line-numbers>const textNode = document.createTextNode("Hello ");
+        textNode.appendData("World!");
+        console.log(textNode.data); // logs "Hello World!"
+        </code></pre>
+              </li>
+              <li>deleteData(offset, count): Deletes a specified number of characters, starting at the specified offset.
+                <pre><code data-line-numbers>const textNode = document.createTextNode("Hello World!");
+        textNode.deleteData(6, 6); // deletes "World!"
+        console.log(textNode.data); // logs "Hello "
+        </code></pre>
+              </li>
+              <li>insertData(offset, data): Inserts the given string at the specified offset.
+                <pre><code data-line-numbers>const textNode = document.createTextNode("Hello !");
+        textNode.insertData(6, "World"); // inserts "World" after "Hello "
+        console.log(textNode.data); // logs "Hello World!"
+        </code></pre>
+              </li>
+              <li>replaceData(offset, count, data): Replaces a specified number of characters, starting at the specified
+                offset, with the given string.
+                <pre><code data-line-numbers>const textNode = document.createTextNode("Hello World!");
+        textNode.replaceData(6, 6, "Universe"); // replaces "World!" with "Universe"
+        console.log(textNode.data); // logs "Hello Universe"
+        </code></pre>
+              </li>
+              <li>substringData(offset, count): Returns a substring of the node's data, starting at the specified offset
+                and extending for the specified number of characters.
+                <pre><code data-line-numbers>const textNode = document.createTextNode("Hello World!");
+        console.log(textNode.substringData(6, 6)); // logs "World!"
+        </code></pre>
+              </li>
+            </ul>
+          </div>
+          <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/CharacterData#instance_methods"
               target="_blank">Learn more on
               MDN</a></p>
         </section>
